@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10141d">
+  <meta name="description" content="Build a tiny business empire in Neon Tycoon, an idle city-building game.">
+  <title>Neon Tycoon — Build Your Empire</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/game.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Neon Tycoon home">
+        <span class="brand-mark" aria-hidden="true">N</span>
+        <span>NEON<span class="brand-muted"> TYCOON</span><small>YOUR EMPIRE STARTS HERE</small></span>
+      </a>
+      <div class="top-actions">
+        <span class="save-status"><i></i> <span id="save-status">Saved locally</span></span>
+        <button class="icon-button" id="sound-toggle" title="Toggle sound effects" aria-label="Toggle sound">♫</button>
+        <button class="icon-button" id="reset-button" title="Reset your game" aria-label="Reset game">↻</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse-dot"></span> BUSINESS SIMULATOR <span class="eyebrow-separator">/</span> DAY <b id="day-number">1</b></div>
+          <h1>Build it.<br><span>Grow it.</span> Own it.</h1>
+          <p>Start with a tiny corner shop. Build a city-sized business empire, one smart investment at a time.</p>
+          <button class="primary-button" id="collect-button"><span>＋</span> Collect profits <kbd>SPACE</kbd></button>
+        </div>
+        <div class="city-art" aria-label="Illustration of a glowing city skyline">
+          <div class="sun"></div><div class="city-grid"></div>
+          <div class="building b1"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="building b2"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="building b3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="building b4"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="building b5"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="city-road"></div><div class="city-glow"></div>
+          <span class="city-label">YOUR CITY · YOUR RULES</span>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="Business statistics">
+        <article class="stat-card money-card"><div class="stat-heading"><span class="stat-icon green">＄</span><span>CASH BALANCE</span><span class="live-tag">LIVE</span></div><strong id="cash-value">$250</strong><div class="stat-foot"><span class="positive" id="cash-change">+$0 / sec</span><span>Available funds</span></div></article>
+        <article class="stat-card"><div class="stat-heading"><span class="stat-icon purple">↗</span><span>PASSIVE INCOME</span></div><strong id="income-value">$0<span class="unit">/sec</span></strong><div class="stat-foot"><span>Automatic earnings</span><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div></article>
+        <article class="stat-card"><div class="stat-heading"><span class="stat-icon blue">⌂</span><span>PROPERTIES</span></div><strong id="property-value">0</strong><div class="stat-foot"><span>Buildings owned</span><span id="property-goal">0 / 10 to expand</span></div></article>
+        <article class="stat-card"><div class="stat-heading"><span class="stat-icon orange">♙</span><span>WORKFORCE</span></div><strong id="worker-value">0</strong><div class="stat-foot"><span>People on your payroll</span><span class="worker-status"><i></i> Working</span></div></article>
+      </section>
+
+      <div class="section-heading">
+        <div><div class="eyebrow">YOUR PORTFOLIO</div><h2>Build your business</h2><p>Choose your next investment. Every property earns cash automatically.</p></div>
+        <div class="market-pill"><span></span> MARKET OPEN</div>
+      </div>
+
+      <section class="business-grid" id="business-grid" aria-label="Available businesses">
+        <article class="business-card" data-business="kiosk">
+          <div class="business-visual kiosk-art"><span class="visual-badge">STARTER</span><div class="shop-sign">QUICK<span>STOP</span></div><div class="shop-awning"></div><div class="shop-window"></div><div class="shop-door"></div><div class="shop-base"></div><span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✦</span></div>
+          <div class="business-info"><div class="business-title-row"><div><h3>Corner Kiosk</h3><p class="business-type">RETAIL · LEVEL <span id="level-kiosk">1</span></p></div><span class="business-symbol">▣</span></div><p class="business-description">A small shop with big potential. The perfect first investment.</p><div class="business-metrics"><div><small>PROFIT / SEC</small><b class="green-text" id="profit-kiosk">+$2</b></div><div><small>OWNED</small><b id="owned-kiosk">0</b></div></div><button class="buy-button" data-buy="kiosk"><span>＋</span> Buy for <b id="cost-kiosk">$100</b></button></div>
+        </article>
+        <article class="business-card" data-business="cafe">
+          <div class="business-visual cafe-art"><span class="visual-badge purple-badge">POPULAR</span><div class="cafe-sign">bean<span>&amp;</span>brew</div><div class="cafe-roof"></div><div class="cafe-window left-window"></div><div class="cafe-window right-window"></div><div class="cafe-door"></div><div class="cafe-base"></div><span class="coffee-steam">〰</span></div>
+          <div class="business-info"><div class="business-title-row"><div><h3>Urban Café</h3><p class="business-type">HOSPITALITY · LEVEL <span id="level-cafe">1</span></p></div><span class="business-symbol">☕</span></div><p class="business-description">Serve the morning rush and turn coffee into capital.</p><div class="business-metrics"><div><small>PROFIT / SEC</small><b class="green-text" id="profit-cafe">+$8</b></div><div><small>OWNED</small><b id="owned-cafe">0</b></div></div><button class="buy-button" data-buy="cafe"><span>＋</span> Buy for <b id="cost-cafe">$500</b></button></div>
+        </article>
+        <article class="business-card" data-business="office">
+          <div class="business-visual office-art"><span class="visual-badge blue-badge">HIGH GROWTH</span><div class="office-skyline back"></div><div class="office-tower"><div class="tower-top"></div><div class="tower-windows"></div></div><div class="office-tower short-tower"><div class="tower-windows"></div></div><span class="office-star">✦</span></div>
+          <div class="business-info"><div class="business-title-row"><div><h3>Tech Office</h3><p class="business-type">TECHNOLOGY · LEVEL <span id="level-office">1</span></p></div><span class="business-symbol">⌘</span></div><p class="business-description">A sleek office full of ambitious people and bigger paydays.</p><div class="business-metrics"><div><small>PROFIT / SEC</small><b class="green-text" id="profit-office">+$30</b></div><div><small>OWNED</small><b id="owned-office">0</b></div></div><button class="buy-button" data-buy="office"><span>＋</span> Buy for <b id="cost-office">$2,500</b></button></div>
+        </article>
+        <article class="business-card" data-business="tower">
+          <div class="business-visual tower-art"><span class="visual-badge gold-badge">PREMIUM</span><div class="tower-orbit"></div><div class="premium-tower"><div class="premium-spire"></div><div class="premium-windows"></div></div><div class="tower-ground"></div><span class="tower-glint">✧</span></div>
+          <div class="business-info"><div class="business-title-row"><div><h3>Skyline Tower</h3><p class="business-type">REAL ESTATE · LEVEL <span id="level-tower">1</span></p></div><span class="business-symbol">⌂</span></div><p class="business-description">A landmark skyscraper. Expensive to build, incredible to own.</p><div class="business-metrics"><div><small>PROFIT / SEC</small><b class="green-text" id="profit-tower">+$120</b></div><div><small>OWNED</small><b id="owned-tower">0</b></div></div><button class="buy-button" data-buy="tower"><span>＋</span> Buy for <b id="cost-tower">$10,000</b></button></div>
+        </article>
+      </section>
+
+      <section class="bottom-grid">
+        <article class="panel upgrade-panel"><div class="panel-heading"><div><div class="eyebrow">WORK SMARTER</div><h2>Research &amp; upgrades</h2></div><span class="panel-icon">⚙</span></div><div class="upgrade-row"><div class="upgrade-icon">⚡</div><div class="upgrade-copy"><h3>Process automation</h3><p>Increase all business profits by 25%.</p><small id="automation-level">LEVEL 0 / 5</small></div><button class="upgrade-button" id="automation-button">Upgrade <b id="automation-cost">$750</b></button></div><div class="upgrade-row"><div class="upgrade-icon purple-icon">♙</div><div class="upgrade-copy"><h3>Better management</h3><p>Hire managers to boost all income by 50%.</p><small id="management-level">LEVEL 0 / 3</small></div><button class="upgrade-button" id="management-button">Upgrade <b id="management-cost">$2,000</b></button></div></article>
+        <article class="panel milestones-panel"><div class="panel-heading"><div><div class="eyebrow">KEEP CLIMBING</div><h2>Milestones</h2></div><span class="panel-icon trophy">♜</span></div><div class="milestone"><div class="milestone-icon">▣</div><div class="milestone-copy"><b>First investment</b><span>Own your first property</span><div class="progress-track"><i id="progress-property"></i></div></div><span class="milestone-status" id="status-property">0/1</span></div><div class="milestone"><div class="milestone-icon purple-icon">＄</div><div class="milestone-copy"><b>Money maker</b><span>Reach $1,000 total earned</span><div class="progress-track"><i id="progress-earnings"></i></div></div><span class="milestone-status" id="status-earnings">0%</span></div><div class="milestone"><div class="milestone-icon gold-icon">⌂</div><div class="milestone-copy"><b>City builder</b><span>Own 10 properties</span><div class="progress-track"><i id="progress-city"></i></div></div><span class="milestone-status" id="status-city">0/10</span></div></article>
+      </section>
+
+      <section class="activity-panel panel"><div class="panel-heading"><div><div class="eyebrow">THE LATEST</div><h2>Business activity</h2></div><button class="text-button" id="clear-log">Clear log ↗</button></div><div id="activity-log" class="activity-log" aria-live="polite"><div class="activity-entry"><span class="activity-dot"></span><span><b>Your company is open!</b><small>Welcome to your first day as CEO.</small></span><time>NOW</time></div></div></section>
+      <footer><span>NEON TYCOON <span class="footer-dot">●</span> BUILD YOUR OWN FUTURE</span><span>Progress saves automatically on this device.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="reset-dialog" class="reset-dialog"><div class="dialog-mark">↻</div><h2>Start a new empire?</h2><p>This will erase your saved progress on this device. There is no undo.</p><div class="dialog-actions"><button id="cancel-reset" class="secondary-button">Keep playing</button><button id="confirm-reset" class="danger-button">Reset game</button></div></dialog>
+</body>
+</html>
